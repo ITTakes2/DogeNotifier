@@ -26,7 +26,7 @@ namespace DogeNotifier
             };
 
             var contextMenu = new ContextMenuStrip();
-            contextMenu.Items.Add("Exit", null, (s, e) => { Application.Exit(); });
+            contextMenu.Items.Add("Exit", null, (s, e) => { notifyIcon.Visible = false; Environment.Exit(0); });
             notifyIcon.ContextMenuStrip = contextMenu;
 
             notifyIcon.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
