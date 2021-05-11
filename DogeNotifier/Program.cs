@@ -24,11 +24,9 @@ namespace DogeNotifier
                 Visible = !Visible;
                 SetConsoleWindowVisibility(Visible);
             };
-
             var contextMenu = new ContextMenuStrip();
             contextMenu.Items.Add("Exit", null, (s, e) => { notifyIcon.Visible = false; Environment.Exit(0); });
             notifyIcon.ContextMenuStrip = contextMenu;
-
             notifyIcon.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
             notifyIcon.Visible = true;
             notifyIcon.Text = Application.ProductName;
@@ -67,6 +65,8 @@ namespace DogeNotifier
 
         public static int lastNotification = 0;
 
+        public static float lastPrice = 0;
+
         public static void updateDoge()
         {
             new Thread(() =>
@@ -81,6 +81,12 @@ namespace DogeNotifier
                         var root = XElement.Load(jsonReader);
                         string currentDogePrice = root.XPathSelectElement("//dogecoin/gbp").Value;
                         string penniesOnly = currentDogePrice.Split('.')[1].Substring(0, 2);
+
+                        if (lastPrice != float.Parse(currentDogePrice))
+                        {
+                            lastPrice = float.Parse(currentDogePrice);
+                            Console.WriteLine("[" + DateTime.Now + "] Doge price update: £" + lastPrice);
+                        }
 
                         var color = Color.White;
                         if (Convert.ToInt32(penniesOnly) >= 40)
