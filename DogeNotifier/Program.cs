@@ -1,4 +1,4 @@
-﻿using System.Windows.Forms;
+using System.Windows.Forms;
 using System.Drawing;
 using System;
 using System.Runtime.InteropServices;
@@ -50,12 +50,22 @@ namespace DogeNotifier
 
             Application.Run();
 
-            notifyIcon.Visible = false;
+            while (true)
+            {
+                try
+                {
+                    Console.ReadLine();
+                }
+                catch
+                {
+
+                }
+                Thread.Sleep(1000);
+            }
         }
 
 
         public static int lastNotification = 0;
-
 
         public static void updateDoge()
         {
@@ -63,13 +73,10 @@ namespace DogeNotifier
             {
                 while (true)
                 {
-
                     try
                     {
-
                         WebClient client = new WebClient();
                         string coingeckoRespJson = client.DownloadString("https://api.coingecko.com/api/v3/simple/price?ids=dogecoin&vs_currencies=gbp");
-
                         var jsonReader = JsonReaderWriterFactory.CreateJsonReader(Encoding.UTF8.GetBytes(coingeckoRespJson), new System.Xml.XmlDictionaryReaderQuotas());
                         var root = XElement.Load(jsonReader);
                         string currentDogePrice = root.XPathSelectElement("//dogecoin/gbp").Value;
@@ -110,6 +117,8 @@ namespace DogeNotifier
                             }
                             if (lastNotification == 0)
                             {
+                                // if you dont want the notifications, delete everything in this block
+
                                 string Toast = "";
                                 Toast = "<toast><visual><binding template=\"ToastImageAndText01\"><text id = \"1\" >";
                                 Toast += "Doge is currently Low! At £" + currentDogePrice;
@@ -118,6 +127,8 @@ namespace DogeNotifier
                                 tileXml.LoadXml(Toast);
                                 var toast = new ToastNotification(tileXml);
                                 ToastNotificationManager.CreateToastNotifier("Doge toast").Show(toast);
+
+                                //stop deleting here ^^
                             }
                         }
                     }
