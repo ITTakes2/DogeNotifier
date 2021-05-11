@@ -9,6 +9,9 @@ This will show you how many GBP Dogecoin is worth (the main app icon will be sho
 - Color coded to help you see when is a good time to buy/sell (green = above £0.40, yellow = above £0.34, red = £0.33 (time to buy more Doge!))
 - Automatically updates the price every 5 seconds
 
+# Example
+![Example](https://i.imgur.com/6qwaukG.gif)
+
 # Thanks
 Thanks to CoinGecko for providing a free, easy to use API! This application utilizes this API.
 https://www.coingecko.com/api/documentations/v3#/simple/get_simple_price
