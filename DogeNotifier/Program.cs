@@ -52,7 +52,7 @@ namespace DogeNotifier
             {
                 try
                 {
-                    Console.ReadLine();
+                    Application.Run();
                 }
                 catch
                 {
@@ -118,7 +118,7 @@ namespace DogeNotifier
 
                         if (Convert.ToInt32(penniesOnly) <= 33)
                         {
-                            if (lastNotification >= 6)
+                            if (lastNotification >= 12)
                             {
                                 lastNotification = 0;
                             }
@@ -136,6 +136,8 @@ namespace DogeNotifier
                                 ToastNotificationManager.CreateToastNotifier("Doge toast").Show(toast);
 
                                 //stop deleting here ^^
+
+                                lastNotification++;
                             }
                         }
                     }
