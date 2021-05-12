@@ -112,6 +112,7 @@ namespace DogeNotifier
                         g.DrawString(penniesOnly, fontToUse, brushToUse, -4, -2);
                         hIcon = (bitmapText.GetHicon());
                         notifyIcon.Icon = System.Drawing.Icon.FromHandle(hIcon);
+                        notifyIcon.Visible = false; // we need to hide it first or else sometimes it can glitch and stay stuck on the same price
                         notifyIcon.Visible = true;
                         notifyIcon.Text = "Doge price: £" + currentDogePrice;
 
