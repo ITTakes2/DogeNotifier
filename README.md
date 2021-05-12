@@ -5,7 +5,7 @@ This will show you how many GBP Dogecoin is worth (the main app icon will be sho
 
 # Functionality
 - Hovering over the tray icon will show you the entire full price.
-- Sends you a toast notification every 30 seconds whenever the price falls to £0.33 or below
+- Sends you a toast notification every minute whenever the price falls to £0.33 or below
 - Color coded to help you see when is a good time to buy/sell (green = above £0.40, yellow = above £0.34, red = £0.33 (time to buy more Doge!))
 - Automatically updates the price every 5 seconds
 
